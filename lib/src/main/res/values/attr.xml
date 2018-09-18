@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="WJiKeLikeAnim">
+        <attr name="selectedRes" format="reference"/>
+        <attr name="unSelectedRes" format="reference"/>
+        <attr name="selectedTextColor" format="color|reference"/>
+        <attr name="unSelectedTextColor" format="color|reference"/>
+        <attr name="circleColor" format="color|reference"/>
+    </declare-styleable>
+</resources>
