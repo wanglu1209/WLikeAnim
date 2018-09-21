@@ -15,7 +15,7 @@
 <div>
 <img src="https://raw.githubusercontent.com/wanglu1209/WPopup/master/img/anim_gif.gif" width="200" height="350" />
 &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://raw.githubusercontent.com/wanglu1209/WLikeAnim/master/img/gif.gif" width="200" height="350" />
+<img src="https://raw.githubusercontent.com/wanglu1209/WLikeAnim/master/gif/gif.gif" width="250" height="350" />
 </div>
 ## 依赖
 
