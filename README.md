@@ -13,8 +13,6 @@
 </p>
 
 <div>
-<img src="https://raw.githubusercontent.com/wanglu1209/WPopup/master/img/anim_gif.gif" width="200" height="350" />
-&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://raw.githubusercontent.com/wanglu1209/WLikeAnim/master/gif/gif.gif" width="250" height="350" />
 </div>
 
@@ -36,7 +34,7 @@ dependencies {
 ## 使用
 
 ### 普通的动画效果
-效果看第一个图 或者[WPopup](https://github.com/wanglu1209/WPopup)（只是简单的缩放）
+效果看[WPopup](https://github.com/wanglu1209/WPopup)第三张图（只是简单的缩放）
 
 ```Kotlin
 WCommonAnim(iv).show()
