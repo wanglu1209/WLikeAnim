@@ -16,7 +16,7 @@ class WCommonAnim(private val view: View) {
         animSet.duration = 200
     }
 
-    fun start() {
+    fun show() {
         if (animSet.isRunning)
             animSet.cancel()
 
