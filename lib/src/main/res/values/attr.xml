@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="WJueJinAnim">
+    <declare-styleable name="WJueJinLikeAnim">
         <attr name="selectedRes" format="reference"/>
         <attr name="unSelectedRes" format="reference"/>
         <attr name="selectedTextColor" format="color|reference"/>

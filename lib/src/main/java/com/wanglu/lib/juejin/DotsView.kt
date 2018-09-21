@@ -1,5 +1,7 @@
 package com.wanglu.lib.juejin
 
+import android.animation.Animator
+import android.animation.AnimatorSet
 import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
@@ -14,11 +16,11 @@ class DotsView : View {
     private val smallDotPaint = Paint()
 
 
-    private var viewWidth = 174
-    private var viewHeight = 174
+    private var viewWidth = 0
+    private var viewHeight = 0
     private var centerX = 0
     private var centerY = 0
-    private var bitDotColor = Color.parseColor("#48CFC2")
+    private var bigDotColor = Color.parseColor("#48CFC2")
     private var smallDotColor = Color.parseColor("#5BA2E9")
 
     private var bigDotRadius = MAX_BIG_DOT_RADIUS   // 大点的半径
@@ -38,11 +40,11 @@ class DotsView : View {
 
 
     init {
-        bigDotPaint.color = bitDotColor
+        bigDotPaint.color = Color.TRANSPARENT
         bigDotPaint.isAntiAlias = true
         bigDotPaint.style = Paint.Style.FILL
 
-        smallDotPaint.color = smallDotColor
+        smallDotPaint.color = Color.TRANSPARENT
         smallDotPaint.isAntiAlias = true
         smallDotPaint.style = Paint.Style.FILL
     }
@@ -52,7 +54,7 @@ class DotsView : View {
      * 设置颜色
      */
     fun setColor(color1: Int, color2: Int){
-        bitDotColor = color1
+        bigDotColor = color1
         smallDotColor = color2
         invalidate()
     }
@@ -67,6 +69,14 @@ class DotsView : View {
         invalidate()
     }
 
+    fun show(){
+        bigDotPaint.color = bigDotColor
+        smallDotPaint.color = smallDotColor
+        invalidate()
+    }
+
+
+    private var animSet = AnimatorSet()
 
     /**
      * 消失
@@ -74,8 +84,8 @@ class DotsView : View {
     fun dismiss(){
         val bigDotAnim = ValueAnimator.ofFloat(bigDotRadius, 0f)
         val smallDotAnim = ValueAnimator.ofFloat(smallDotRadius, 0f)
-        bigDotAnim.duration = 400
-        smallDotAnim.duration = 400
+        bigDotAnim.duration = 300
+        smallDotAnim.duration = 300
         bigDotAnim.addUpdateListener {
             bigDotRadius = it.animatedValue as Float
             invalidate()
@@ -86,8 +96,35 @@ class DotsView : View {
             invalidate()
         }
 
-        bigDotAnim.start()
-        smallDotAnim.start()
+        animSet.playTogether(bigDotAnim, smallDotAnim)
+        animSet.addListener(object : Animator.AnimatorListener{
+            override fun onAnimationRepeat(animation: Animator?) {
+
+            }
+
+            override fun onAnimationCancel(animation: Animator?) {
+                bigDotPaint.color = Color.TRANSPARENT
+                smallDotPaint.color = Color.TRANSPARENT
+
+                bigDotRadius = MAX_BIG_DOT_RADIUS
+                smallDotRadius = MAX_SMALL_DOT_RADIUS
+            }
+
+            override fun onAnimationStart(animation: Animator?) {
+            }
+
+            override fun onAnimationEnd(animation: Animator?) {
+                // 动画结束后还原
+                bigDotPaint.color = Color.TRANSPARENT
+                smallDotPaint.color = Color.TRANSPARENT
+
+                bigDotRadius = MAX_BIG_DOT_RADIUS
+                smallDotRadius = MAX_SMALL_DOT_RADIUS
+                invalidate()
+            }
+
+        })
+        animSet.start()
     }
 
 
@@ -95,10 +132,11 @@ class DotsView : View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
         // 测量的时候如果宽高都不为0再设置
-//        if (width != 0 && height != 0)
-        setMeasuredDimension(viewWidth, viewHeight)
-        centerX = viewWidth / 2
-        centerY = viewHeight / 2
+        if (viewWidth != 0 && viewHeight != 0) {
+            setMeasuredDimension(viewWidth, viewHeight)
+            centerX = viewWidth / 2
+            centerY = viewHeight / 2
+        }
     }
 
 
@@ -121,5 +159,8 @@ class DotsView : View {
 
     }
 
+    fun cancelAnim(){
+        animSet.cancel()
+    }
 
 }
