@@ -93,11 +93,6 @@ class WJueJinLikeAnim(context: Context?, private val builder: Builder) : PopupWi
     }
 
     fun show() {
-//        if(cv.isAnimRunning()){
-//            cv.cancelAnim()
-//            animSet.cancel()
-//            dismiss()
-//        }
         val viewLocation = IntArray(2)
         builder.view.getLocationInWindow(viewLocation)
         val x = viewLocation[0] + builder.width / 2 - width / 2

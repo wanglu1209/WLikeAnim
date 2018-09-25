@@ -7,10 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/iv"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+    <com.wanglu.lib.qq.ArcView
+        android:layout_width="wrap_content"
         android:layout_gravity="center"
-        android:src="@mipmap/fd_zan"/>
+        android:layout_height="wrap_content"/>
 </FrameLayout>
